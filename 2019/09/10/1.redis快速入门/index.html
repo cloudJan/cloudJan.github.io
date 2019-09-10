@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>cloudJane&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="快速入门介绍Redis是一个开源，先进的key-value存储，并用于构建高性能，可扩展的Web应用程序的完美解决方案。Redis从它的许多竞争继承来的三个主要特点：    • Redis数据库完全在内存中，使用磁盘仅用于持久性。    • 相比许多键值数据存储，Redis拥有一套较为丰富的数据类型。    • Redis可以将数据复制到任意数量的从服务器。Redis 优势    • 异常快速：R">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cloudJane&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/1.redis快速入门/index.html">
+<meta property="og:site_name" content="cloudJane&#39;s blog">
+<meta property="og:description" content="快速入门介绍Redis是一个开源，先进的key-value存储，并用于构建高性能，可扩展的Web应用程序的完美解决方案。Redis从它的许多竞争继承来的三个主要特点：    • Redis数据库完全在内存中，使用磁盘仅用于持久性。    • 相比许多键值数据存储，Redis拥有一套较为丰富的数据类型。    • Redis可以将数据复制到任意数量的从服务器。Redis 优势    • 异常快速：R">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-04-02T04:58:06.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cloudJane&#39;s blog">
+<meta name="twitter:description" content="快速入门介绍Redis是一个开源，先进的key-value存储，并用于构建高性能，可扩展的Web应用程序的完美解决方案。Redis从它的许多竞争继承来的三个主要特点：    • Redis数据库完全在内存中，使用磁盘仅用于持久性。    • 相比许多键值数据存储，Redis拥有一套较为丰富的数据类型。    • Redis可以将数据复制到任意数量的从服务器。Redis 优势    • 异常快速：R">
+  
+    <link rel="alternate" href="/atom.xml" title="cloudJane&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cloudJane&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-1.redis快速入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/1.redis快速入门/" class="article-date">
+  <time datetime="2019-09-10T06:06:52.212Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Redis是一个开源，先进的key-value存储，并用于构建高性能，可扩展的Web应用程序的完美解决方案。<br>Redis从它的许多竞争继承来的三个主要特点：<br>    • Redis数据库完全在内存中，使用磁盘仅用于持久性。<br>    • 相比许多键值数据存储，Redis拥有一套较为丰富的数据类型。<br>    • Redis可以将数据复制到任意数量的从服务器。<br>Redis 优势<br>    • 异常快速：Redis的速度非常快，每秒能执行约11万集合，每秒约81000+条记录。<br>    • 支持丰富的数据类型：Redis支持最大多数开发人员已经知道像列表，集合，有序集合，散列数据类型。这使得它非常容易解决各种各样的问题，因为我们知道哪些问题是可以处理通过它的数据类型更好。<br>    • 操作都是原子性：所有Redis操作是原子的，这保证了如果两个客户端同时访问的Redis服务器将获得更新后的值。<br>    • 多功能实用工具：Redis是一个多实用的工具，可以在多个用例如缓存，消息，队列使用(Redis原生支持发布/订阅)，任何短暂的数据，应用程序，如Web应用程序会话，网页命中计数等。</p>
+<h2 id="日常命令"><a href="#日常命令" class="headerlink" title="日常命令"></a>日常命令</h2><p>启动 Redis<br>$redis-server<br>检查Redis是否在工作？``<br>$redis-cli<br>这将打开一个Redis提示，如下图所示：<br>redis 127.0.0.1:6379&gt;<br>上面的提示127.0.0.1是本机的IP地址，6379为Redis服务器运行的端口。现在输入PING命令，如下图所示。<br>redis 127.0.0.1:6379&gt; ping<br>PONG<br>这说明你已经成功地安装Redis在您的机器上。<br>在Ubuntu上安装Redis的桌面管理器<br>在Ubuntu上安装Redis的桌面管理器，只需从 <a href="http://redisdesktop.com/download" target="_blank" rel="noopener">http://redisdesktop.com/download</a> 打开下载软件包并安装它。<br>Redis桌面管理器会给你用户界面来管理Redis的Key和数据。<br>Redis - 数据类型<br>Redis支持5种类型的数据类型，它描述如下的：</p>
+<h3 id="字符串操作"><a href="#字符串操作" class="headerlink" title="字符串操作"></a>字符串操作</h3><p>字符串<br>Redis字符串是字节序列。Redis字符串是二进制安全的，这意味着他们有一个已知的长度没有任何特殊字符终止，所以你可以存储任何东西，512兆为上限。<br>例子<br>redis 127.0.0.1:6379&gt; SET name “yiibai”<br>OK<br>redis 127.0.0.1:6379&gt; GET name<br>“yiibai”<br>上面是Redis的set和get命令的例子，Redis名称为yiibai使用的key存储在Redis的字符串值。<br>哈希<br>Redis的哈希是键值对的集合。 Redis的哈希值是字符串字段和字符串值之间的映射，因此它们被用来表示对象<br>例子<br>redis 127.0.0.1:6379&gt; HMSET user:1 username yiibai password yiibai points 200<br>OK<br>redis 127.0.0.1:6379&gt; HGETALL user:1<br>1) “username”<br>2) “yiibai”<br>3) “password”<br>4) “yiibai”<br>5) “points”<br>6) “200”<br>在上面的例子中的哈希数据类型，用于存储其中包含的用户的基本信息用户的对象。这里HMSET，HEGTALL用户命令user:1是键。</p>
+<h3 id="列表操作"><a href="#列表操作" class="headerlink" title="列表操作"></a>列表操作</h3><p>列表<br>Redis的列表是简单的字符串列表，排序插入顺序。您可以添加元素到Redis的列表的头部或尾部。<br>例子<br>redis 127.0.0.1:6379&gt; lpush tutoriallist redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; lpush tutoriallist mongodb<br>(integer) 2<br>redis 127.0.0.1:6379&gt; lpush tutoriallist rabitmq<br>(integer) 3<br>redis 127.0.0.1:6379&gt; lrange tutoriallist 0 10<br>1) “rabitmq”<br>2) “mongodb”<br>3) “redis”<br>列表的最大长度为 232 - 1 元素（4294967295，每个列表中可容纳超过4十亿的元素）。<br>集合<br>Redis的集合是字符串的无序集合。在Redis您可以添加，删除和测试文件是否存在，在成员O（1）的时间复杂度。<br>例子<br>redis 127.0.0.1:6379&gt; sadd tutoriallist redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; sadd tutoriallist mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; sadd tutoriallist rabitmq<br>(integer) 1<br>redis 127.0.0.1:6379&gt; sadd tutoriallist rabitmq<br>(integer) 0<br>redis 127.0.0.1:6379&gt; smembers tutoriallist<br>1) “rabitmq”<br>2) “mongodb”<br>3) “redis”<br>注意：在上面的例子中rabitmq集合添加加两次，但由于集合元素具有唯一属性。<br>集合中的元素最大数量为 232 - 1 （4294967295，可容纳超过4十亿元素）。<br>有序集合<br>Redis的有序集合类似于Redis的集合，字符串不重复的集合。不同的是，一个有序集合的每个成员用分数，以便采取有序set命令，从最小的到最大的成员分数有关。虽然成员具有唯一性，但分数可能会重复。<br>例子<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 rabitmq<br>(integer) 1<br>redis 127.0.0.1:6379&gt; zadd tutoriallist 0 rabitmq<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZRANGEBYSCORE tutoriallist 0 1000<br>1) “redis”<br>2) “mongodb”<br>3) “rabitmq”<br>Redis - keys<br>Redis keys命令用于在Redis的管理键。Redis keys命令使用语法如下所示：<br>语法<br>redis 127.0.0.1:6379&gt; COMMAND KEY_NAME<br>例子<br>redis 127.0.0.1:6379&gt; SET yiibai redis<br>OK<br>redis 127.0.0.1:6379&gt; DEL yiibai<br>(integer) 1<br>在上面的例子中DEL是命令，而yiibai是key。如果key被删除，那么输出该命令将是（整数）1，否则它会是（整数）0<br>Redis - Strings<br>Redis strings命令用于在Redis的管理字符串值。Redis strings命令的使用语法，如下所示：<br>语法<br>redis 127.0.0.1:6379&gt; COMMAND KEY_NAME<br>例子<br>redis 127.0.0.1:6379&gt; SET yiibai redis<br>OK<br>redis 127.0.0.1:6379&gt; GET yiibai<br>“redis”<br>在上面的例子SET和GET是命令，而yiibai是key。</p>
+<h3 id="哈希操作"><a href="#哈希操作" class="headerlink" title="哈希操作"></a>哈希操作</h3><p>Redis - 哈希<br>Redis的哈希值是字符串字段和字符串值之间的映射，所以他们是代表对象的完美数据类型<br>在Redis的哈希值，最多可存储超过400十亿字段 - 值对。<br>例子<br>redis 127.0.0.1:6379&gt; HMSET yiibai name “redis tutorial” description “redis basic commands for caching” likes 20 visitors 23000<br>OK<br>redis 127.0.0.1:6379&gt; HGETALL yiibai<br>1) “name”<br>2) “redis tutorial”<br>3) “description”<br>4) “redis basic commands for caching”<br>5) “likes”<br>6) “20”<br>7) “visitors”<br>8) “23000”<br>在上面的例子中，已经在哈希命名yiibai的Redis集合名为tutorials（name, description, likes, visitors）<br>Redis - 列表<br>Redis的列表是简单的字符串列表，排序插入顺序。您可以添加Redis元素在列表头部或列表的尾部。<br>列表的最大长度为 232 - 1 个元素（每个列表元素个数超过4294967295）。<br>例子<br>redis 127.0.0.1:6379&gt; LPUSH tutorials redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; LPUSH tutorials mongodb<br>(integer) 2<br>redis 127.0.0.1:6379&gt; LPUSH tutorials mysql<br>(integer) 3<br>redis 127.0.0.1:6379&gt; LRANGE tutorials 0 10<br>1) “mysql”<br>2) “mongodb”<br>3) “redis”<br>在上述例子中的三个值被插入在redis列表名为LPUSH的命令教程。</p>
+<h2 id="集合操作"><a href="#集合操作" class="headerlink" title="集合操作"></a>集合操作</h2><p>Redis - 集合<br>Redis的集合是唯一的字符串的无序集合。集合的唯一性不允许数据的重复的键。<br>在Redis的集合添加，删除和测试文件是否存在成员在O（1）（常数时间不管里面包含的元素集合的数量）。集合的最大长度为 232 - 1 个元素（每集合超过4294967295元素）。<br>例子<br>redis 127.0.0.1:6379&gt; SADD tutorials redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD tutorials mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD tutorials mysql<br>(integer) 1<br>redis 127.0.0.1:6379&gt; SADD tutorials mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; SMEMBERS tutorials<br>1) “mysql”<br>2) “mongodb”<br>3) “redis”<br>在上述例子中的三个值被命令SADD插入redis的集合名称tutorials。<br>Redis有序集<br>Redis的有序集合类似Redis的集合存储在设定值具有唯一性。不同的是，一个有序集合的每个成员用分数，以便采取有序set命令，从最小的到最大的分数有关。<br>在Redis的有序set添加，删除和测试存在成员O（1）（固定时间，无论里面包含集合元素的数量）。列表的最大长度为 232 - 1 个元素（每集合超过4294967295元素）。<br>例子<br>redis 127.0.0.1:6379&gt; ZADD tutorials 1 redis<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD tutorials 2 mongodb<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD tutorials 3 mysql<br>(integer) 1<br>redis 127.0.0.1:6379&gt; ZADD tutorials 3 mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZADD tutorials 4 mysql<br>(integer) 0<br>redis 127.0.0.1:6379&gt; ZRANGE tutorials 0 10 WITHSCORES<br>1) “redis”<br>2) “1”<br>3) “mongodb”<br>4) “2”<br>5) “mysql”<br>6) “4”<br>在上述例子中的三个值被命令ZADD插入其得分在redis的有序集命名为tutorials。<br>Redis - HyperLogLog<br>Redis的HyperLogLog使用随机化，以提供唯一的元素数目近似的集合只使用一个常数，并且体积小，少量内存的算法。<br>HyperLogLog提供，即使每个使用了非常少量的内存（12千字节），标准误差为集合的基数非常近似，没有限制的条目数，可以指定，除非接近 264个条目。<br>例子<br>下面的示例说明Redis的HyperLogLog工作原理：<br>redis 127.0.0.1:6379&gt; PFADD tutorials “redis”<br>1) (integer) 1<br>redis 127.0.0.1:6379&gt; PFADD tutorials “mongodb”<br>1) (integer) 1<br>redis 127.0.0.1:6379&gt; PFADD tutorials “mysql”<br>1) (integer) 1<br>redis 127.0.0.1:6379&gt; PFCOUNT tutorials<br>(integer) 3</p>
+<h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>Redis - 订阅<br>Redis的订阅实现了邮件系统，发送者（在Redis的术语中被称为发布者）发送的邮件，而接收器（用户）接收它们。由该消息传送的链路被称为通道。<br>在Redis客户端可以订阅任何数目的通道。<br>示例<br>以下举例说明如何发布用户的概念工作。在下面的例子给出一个客户端订阅一个通道名为redisChat<br>redis 127.0.0.1:6379&gt; SUBSCRIBE redisChat<br>Reading messages… (press Ctrl-C to quit)<br>1) “subscribe”<br>2) “redisChat”<br>3) (integer) 1<br>现在，两个客户端都发布在同一个命名通道redisChat消息，并且以上订阅客户端接收消息。<br>redis 127.0.0.1:6379&gt; PUBLISH redisChat “Redis is a great caching technique”<br>(integer) 1<br>redis 127.0.0.1:6379&gt; PUBLISH redisChat “Learn redis by tutorials point”<br>(integer) 1<br>1) “message”<br>2) “redisChat”<br>3) “Redis is a great caching technique”<br>1) “message”<br>2) “redisChat”<br>3) “Learn redis by tutorials point”</p>
+<h2 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h2><p>Redis - 事务<br>Redis事务让一组命令在单个步骤执行。事务中有两个属性，说明如下：<br>    • 在一个事务中的所有命令按顺序执行作为单个隔离操作。通过另一个客户端发出的请求在Redis的事务的过程中执行，这是不可能的。<br>    • Redis的事务具有原子性。原子意味着要么所有的命令都执行或都不执行。<br>例子<br>Redis的事务由指令多重发起，然后需要传递在事务，而且整个事务是通过执行命令EXEC执行命令列表。<br>redis 127.0.0.1:6379&gt; MULTI<br>OK<br>List of commands here<br>redis 127.0.0.1:6379&gt; EXEC<br>例子<br>以下举例说明Redis事务如何启动并执行。<br>redis 127.0.0.1:6379&gt; MULTI<br>OK<br>redis 127.0.0.1:6379&gt; SET tutorial redis<br>QUEUED<br>redis 127.0.0.1:6379&gt; GET tutorial<br>QUEUED<br>redis 127.0.0.1:6379&gt; INCR visitors<br>QUEUED<br>redis 127.0.0.1:6379&gt; EXEC<br>1) OK<br>2) “redis”<br>3) (integer) 1</p>
+<h2 id="脚本"><a href="#脚本" class="headerlink" title="脚本"></a>脚本</h2><p>Redis - 脚本<br>Redis脚本使用Lua解释脚本用于评估计算。它内置的Redis，从2.6.0版本开始使用脚本命令 eval。<br>语法<br>eval命令的基本语法如下：<br>redis 127.0.0.1:6379&gt; EVAL script numkeys key [key …] arg [arg …]<br>例子<br>以下举例说明Redis脚本的工作原理：<br>redis 127.0.0.1:6379&gt; EVAL “return {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}” 2 key1 key2 first second<br>1) “key1”<br>2) “key2”<br>3) “first”<br>4) “second”</p>
+<h2 id="连接"><a href="#连接" class="headerlink" title="连接"></a>连接</h2><p>Redis - 连接<br>Redis的连接命令基本上都是用于管理与Redis的服务器客户端连接。<br>Example<br>下面的例子说明了一个客户如何通过Redis服务器验证自己，并检查服务器是否正在运行。<br>redis 127.0.0.1:6379&gt; AUTH “password”<br>OK<br>redis 127.0.0.1:6379&gt; PING<br>PONG<br>Redis - 备份<br>Redis SAVE命令用来创建当前的 Redis 数据库备份。<br>语法<br>对Redis SAVE命令的基本语法如下所示：<br>127.0.0.1:6379&gt; SAVE<br>例子<br>下面的示例显示了 Redis 当前数据库如何创建备份。<br>127.0.0.1:6379&gt; SAVE<br>OK<br>这个命令将创建dump.rdb文件在Redis目录中。<br>还原Redis数据<br>要恢复Redis的数据只需移动 Redis 的备份文件（dump.rdb）到 Redis 目录，然后启动服务器。为了得到你的 Redis 目录，使用配置命令如下所示：<br>127.0.0.1:6379&gt; CONFIG get dir<br>1) “dir”<br>2) “/user/yiibai/redis-2.8.13/src”<br>在上述命令的输出在 /user/yiibai/redis-2.8.13/src 目录，在安装redis的服务器安装位置。<br>Bgsave<br>要创建Redis的备份备用命令BGSAVE也可以。这个命令将开始执行备份过程，并在后台运行。<br>例子<br>127.0.0.1:6379&gt; BGSAVE<br>Background saving started</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>Redis - 安全<br>可以Redis的数据库更安全，所以相关的任何客户端都需要在执行命令之前进行身份验证。客户端输入密码匹配需要使用Redis设置在配置文件中的密码。<br>例子<br>下面给出的例子显示的步骤，以确保您的Redis实例安全。<br>127.0.0.1:6379&gt; CONFIG get requirepass<br>1) “requirepass”<br>2) “”<br>默认情况下，此属性为空，表示没有设置密码，此实例。您可以通过执行以下命令来更改这个属性<br>127.0.0.1:6379&gt; CONFIG set requirepass “yiibai”<br>OK<br>127.0.0.1:6379&gt; CONFIG get requirepass<br>1) “requirepass”<br>2) “yiibai”<br>设置密码，如果客户端运行命令没有验证，会提示（错误）NOAUTH，需要通过验证。错误将返回客户端。因此，客户端需要使用AUTHcommand进行认证。<br>语法<br>AUTH命令的基本语法如下所示：<br>127.0.0.1:6379&gt; AUTH password</p>
+<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>Redis - 基准<br>Redis基准是公用工具同时运行Ñ命令检查Redis的性能。<br>语法<br>redis的基准的基本语法如下所示：<br>redis-benchmark [option] [option value]<br>例子<br>下面给出的例子检查redis调用100000命令。<br>redis-benchmark -n 100000<br>PING_INLINE: 141043.72 requests per second<br>PING_BULK: 142857.14 requests per second<br>SET: 141442.72 requests per second<br>GET: 145348.83 requests per second<br>INCR: 137362.64 requests per second<br>LPUSH: 145348.83 requests per second<br>LPOP: 146198.83 requests per second<br>SADD: 146198.83 requests per second<br>SPOP: 149253.73 requests per second<br>LPUSH (needed to benchmark LRANGE): 148588.42 requests per second<br>LRANGE_100 (first 100 elements): 58411.21 requests per second<br>LRANGE_300 (first 300 elements): 21195.42 requests per second<br>LRANGE_500 (first 450 elements): 14539.11 requests per second<br>LRANGE_600 (first 600 elements): 10504.20 requests per second<br>MSET (10 keys): 93283.58 requests per second</p>
+<h2 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h2><p>Redis - 客户端连接<br>Redis接受配置监听TCP端口和Unix套接字客户端的连接，如果启用。当一个新的客户端连接被接受以下操作进行：<br>    • 客户端套接字置于非阻塞状态，因为Redis使用复用和非阻塞I/O操作。<br>    • TCP_NODELAY选项设定是为了确保我们没有在连接时延迟。<br>    • 创建一个可读的文件时，这样Redis能够尽快收集客户端的查询作为新的数据可供读取的套接字。<br>客户端的最大数量<br>在Redis的配置（redis.conf）属性调用maxclients，它描述客户端可以连接到Redis的最大数量。命令的基本语法是：<br>config get maxclients<br>1) “maxclients”<br>2) “10000”<br>默认情况下，此属性设置为10000（这取决于操作系统的文件描述符限制最大数量），但你可以改变这个属性。<br>例子<br>在下面给出的例子中，在启动服务器我们设置客户端的最大数量为10万。<br>redis-server –maxclients 100000<br>Redis - 管道传输<br>Redis是一个TCP服务器，并支持请求/响应协议。在redis一个请求完成下面的步骤：<br>    • 客户端发送一个查询到服务器，并从套接字中读取，通常在阻塞的方式，对服务器的响应。<br>    • 服务器处理命令并将响应返回给客户端。<br>管道传输的含义<br>管道的基本含义是，客户端可以发送多个请求给服务器，而无需等待答复所有，并最后读取在单个步骤中的答复。<br>例子<br>要检查redis的管道，只要启动Redis实例，然后在终端键入以下命令。<br>$(echo -en “PING\r\n SET tutorial redis\r\nGET tutorial\r\nINCR visitor\r\nINCR visitor\r\nINCR visitor\r\n”; sleep 10) | nc localhost 6379<br>+PONG<br>+OK<br>redis<br>:1<br>:2<br>:3<br>在上述例子中，我们必须使用PING命令检查Redis的连接，之后，我们已经设定值的Redis字符串命名tutorial ，之后拿到key的值和增量访问量的三倍。在结果中，我们可以检查所有的命令都一次提交给Redis，Redis是在一个步骤给出所有命令的输出。<br>管道的好处<br>这种技术的好处是极大地改善协议的性能。通过管道将慢互联网连接速度从5倍的连接速度提高到localhost至少达到百过倍。</p>
+<h2 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h2><p>Redis - 分区<br>分区是一种将数据分成多个Redis的情况下，让每一个实例将只包含你的键字的子集的过程。<br>分区的好处<br>    • 它允许更大的数据库，使用的多台计算机的存储器的总和。如果不分区，一台计算机的内存可支数量有限。<br>    • 它允许以大规模的计算能力，以多个内核和多个计算机，以及网络带宽向多台计算机和网络适配器。<br>分区的缺点<br>    • 通常不支持涉及多个键的操作。例如，不能两个集合之间执行交叉点，因为它们存储在被映射到不同Redis实例中的键。<br>    • 涉及多个键的Redis事务不能被使用。<br>    • 分区粒度是关键，所以它是不可能分片数据集用一个硕大的键是一个非常大的有序集合。<br>    • 当分区时，数据处理比较复杂，比如要处理多个RDB/AOF文件，使数据备份需要从多个实例和主机聚集持久性文件。<br>    • 添加和删除的能力可能很复杂。比如Redis的集群支持有添加，并在运行时删除节点不支持此功能的能力，但其他系统，如客户端的分区和代理的数据大多是透明的重新平衡。但是有一个叫Presharding技术有助于在这方面。<br>分区的类型<br>redis的提供有两种类型的分区。假设我们有四个Redis实例R0，R1，R2，R3和代表用户很多键如：user:1, user:2, … 等等<br>范围分区<br>范围分区被映射对象转化为具体的Redis实例的范围内实现。假定在本例中用户ID0〜ID10000将进入实例R0，而用户形成ID10001至20000号将进入实例R1等等。<br>散列分区<br>在这种类型的分区，一个散列函数（例如，模数函数）被用于转换键成数字，然后数据被存储在不同redis的实例。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/10/1.redis快速入门/" data-id="ck0dfodqm00055k7k62vt1l6z" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/10/5.redis项目集成/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/10/2.redis安装篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/10/4.redis维护篇 /">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/5.redis项目集成/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/1.redis快速入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/2.redis安装篇/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/3.redis调优篇/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>

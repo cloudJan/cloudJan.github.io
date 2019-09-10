@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+
+  
+  <title>cloudJane&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="redis安装篇单机安装环境说明 操作系统：redhat6.4  获取安装包 从redis官网下载对应的版本，下载地址：http://download.redis.io/releases/ 从公司获取现成的版本，本次培训使用的redis-3.2.10版本  安装依赖使用yum自动安装依赖的包，请先配置好yum仓库，不然手工安装一个个依赖包会非常浪费时间。 1yum -y install cpp b">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cloudJane&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/2.redis安装篇/index.html">
+<meta property="og:site_name" content="cloudJane&#39;s blog">
+<meta property="og:description" content="redis安装篇单机安装环境说明 操作系统：redhat6.4  获取安装包 从redis官网下载对应的版本，下载地址：http://download.redis.io/releases/ 从公司获取现成的版本，本次培训使用的redis-3.2.10版本  安装依赖使用yum自动安装依赖的包，请先配置好yum仓库，不然手工安装一个个依赖包会非常浪费时间。 1yum -y install cpp b">
+<meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-03-26T03:06:31.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cloudJane&#39;s blog">
+<meta name="twitter:description" content="redis安装篇单机安装环境说明 操作系统：redhat6.4  获取安装包 从redis官网下载对应的版本，下载地址：http://download.redis.io/releases/ 从公司获取现成的版本，本次培训使用的redis-3.2.10版本  安装依赖使用yum自动安装依赖的包，请先配置好yum仓库，不然手工安装一个个依赖包会非常浪费时间。 1yum -y install cpp b">
+  
+    <link rel="alternate" href="/atom.xml" title="cloudJane&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">cloudJane&#39;s blog</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2.redis安装篇" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/2.redis安装篇/" class="article-date">
+  <time datetime="2019-09-10T06:06:52.196Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="redis安装篇"><a href="#redis安装篇" class="headerlink" title="redis安装篇"></a>redis安装篇</h1><h2 id="单机安装"><a href="#单机安装" class="headerlink" title="单机安装"></a>单机安装</h2><h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><ul>
+<li>操作系统：redhat6.4</li>
+</ul>
+<h3 id="获取安装包"><a href="#获取安装包" class="headerlink" title="获取安装包"></a>获取安装包</h3><ol>
+<li>从redis官网下载对应的版本，下载地址：<a href="http://download.redis.io/releases/" target="_blank" rel="noopener">http://download.redis.io/releases/</a></li>
+<li>从公司获取现成的版本，本次培训使用的redis-3.2.10版本</li>
+</ol>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p>使用yum自动安装依赖的包，请先配置好yum仓库，不然手工安装一个个依赖包会非常浪费时间。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install cpp binutils glibc glibc-kernheaders glibc-common glibc-devel gcc make gcc-c++ libstdc++-devel tcl zlib-devel</span><br></pre></td></tr></table></figure>
+
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>注意：安装时使用root用户安装，实际生产环境中请新建用户（redis或者cache等）进行管理。</p>
+<p>以下使用root用户安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#1、上传安装包至/opt目录</span></span><br><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line"><span class="comment">#2、解压安装包</span></span><br><span class="line">tar -xzvf redis-3.2.10.tar.gz</span><br><span class="line"><span class="built_in">cd</span> redis-3.2.10</span><br><span class="line"><span class="comment">#3、编译</span></span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="comment">#4、配置命令</span></span><br><span class="line"><span class="comment">#copy src目录如下文件到/usr/local/bin目录，方便直接使用这些命令</span></span><br><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">cp redis-server /usr/<span class="built_in">local</span>/bin</span><br><span class="line">cp redis-sentinel /usr/<span class="built_in">local</span>/bin</span><br><span class="line">cp redis-cli /usr/<span class="built_in">local</span>/bin</span><br><span class="line">cp redis-benchmark /usr/<span class="built_in">local</span>/bin</span><br><span class="line">cp redis-check-aof /usr/<span class="built_in">local</span>/bin</span><br><span class="line">cp redis-trib.rb /usr/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><h4 id="新建redis管理用户"><a href="#新建redis管理用户" class="headerlink" title="新建redis管理用户"></a>新建redis管理用户</h4><p>本文档使用redis用户管理redis服务。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建用户</span></span><br><span class="line">useradd -d /home/redis -m redis</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改密码</span></span><br><span class="line">passwd redis</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>以下操作使用redis用户操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建配置文件目录</span></span><br><span class="line">mkdir -p /home/redis/standalone</span><br><span class="line"></span><br><span class="line"><span class="comment">#拷贝配置文件</span></span><br><span class="line">cp /opt/redis-3.2.10/redis.conf /home/redis/standalone</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line">vi /home/redis/standalone/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改如下配置：</span></span><br><span class="line"><span class="comment">#端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改默认绑定ip，修改为自己服务器的ip，不然客户端使用ip地址是无法访问的</span></span><br><span class="line"><span class="built_in">bind</span> 192.168.88.135</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份文件目录</span></span><br><span class="line">dir /home/redis/standalone/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改如下redis.conf文件</span></span><br><span class="line"> 默认为no，此配置表示后台启动</span><br><span class="line"> daemonize yes</span><br><span class="line"></span><br><span class="line"> <span class="comment">#修改进程号文件，以端口号区分</span></span><br><span class="line"> pidfile /home/redis/standalone/redis.pid</span><br><span class="line"></span><br><span class="line"> <span class="comment">#修改日志文件路径</span></span><br><span class="line"> logfile <span class="string">"/home/redis/standalone/redis.log"</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="启动redis服务"><a href="#启动redis服务" class="headerlink" title="启动redis服务"></a>启动redis服务</h4><p>以下操作使用redis用户操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/redis/standalone</span><br><span class="line"><span class="comment">#指定redis配置文件</span></span><br><span class="line">redis-server redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>查看进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 standalone]$ ps -ef|grep redis-server</span><br><span class="line">redis     2721     1  0 10:18 ?        00:00:00 redis-server 192.168.88.135:6379</span><br><span class="line">redis     2726  2657  0 10:18 pts/1    00:00:00 grep redis-server</span><br></pre></td></tr></table></figure>
+
+<h4 id="停止redis服务"><a href="#停止redis服务" class="headerlink" title="停止redis服务"></a>停止redis服务</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kill -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h4 id="客户端端测试"><a href="#客户端端测试" class="headerlink" title="客户端端测试"></a>客户端端测试</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 standalone]$ redis-cli -h 192.168.88.135 -p 6379</span><br><span class="line"><span class="comment">#存值</span></span><br><span class="line">192.168.88.135:6379&gt; <span class="built_in">set</span> cust_no 123</span><br><span class="line">OK</span><br><span class="line"><span class="comment">#获取值</span></span><br><span class="line">192.168.88.135:6379&gt; get cust_no</span><br><span class="line"><span class="string">"123"</span></span><br><span class="line">192.168.88.135:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="集群安装"><a href="#集群安装" class="headerlink" title="集群安装"></a>集群安装</h2><h3 id="前提条件"><a href="#前提条件" class="headerlink" title="前提条件"></a>前提条件</h3><ul>
+<li>集群安装需要redis3.0+的版本支持</li>
+<li>完成单机安装</li>
+<li>redis3.0集群需要ruby环境支持，需要安装ruby环境</li>
+</ul>
+<h3 id="安装ruby"><a href="#安装ruby" class="headerlink" title="安装ruby"></a>安装ruby</h3><p>使用root用户安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#上传ruby-2.4.0.tar.gz安装包至/opt目录</span></span><br><span class="line"><span class="comment">#安装ruby</span></span><br><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">tar -xzvf ruby-2.4.0.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ruby-2.4.0</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line"></span><br><span class="line"><span class="comment">#上传redis-3.2.10.gem至/opt目录</span></span><br><span class="line"><span class="built_in">cd</span> /opt</span><br><span class="line">gem install --<span class="built_in">local</span> redis-3.3.2.gem</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改配置文件-1"><a href="#修改配置文件-1" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#新建配置文件目录</span></span><br><span class="line">mkdir -p /home/redis/cluster/6379</span><br><span class="line"><span class="comment">#拷贝单机的配置文件</span></span><br><span class="line">cp /home/redis/standalone/redis.conf /home/redis/cluster/6379</span><br><span class="line"><span class="comment">#修改配置文件</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#端口号</span></span><br><span class="line">port 6379</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改默认绑定ip，修改为自己服务器的ip，不然客户端使用ip地址是无法访问的</span></span><br><span class="line"><span class="built_in">bind</span> 192.168.88.135</span><br><span class="line"></span><br><span class="line"><span class="comment"># 修改如下，默认为no，此配置表示后台启动</span></span><br><span class="line">daemonize yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份文件目录</span></span><br><span class="line">dir /home/redis/cluster/6379/</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改进程号文件，以端口号区分</span></span><br><span class="line">pidfile /home/redis/cluster/6379/redis.pid</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改日志文件路径</span></span><br><span class="line">logfile <span class="string">"/home/redis/cluster/6379/redis.log"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#开启集群</span></span><br><span class="line">cluster-enabled yes</span><br><span class="line"><span class="comment">#指定集群的配置文件</span></span><br><span class="line">cluster-config-file <span class="string">"/home/redis/cluster/6379/nodes.conf"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#集群中节点挂了，不影响整个集群，可以正常访问其他节点的数据</span></span><br><span class="line">cluster-require-full-coverage no</span><br></pre></td></tr></table></figure>
+
+<h3 id="集群中其他节点安装"><a href="#集群中其他节点安装" class="headerlink" title="集群中其他节点安装"></a>集群中其他节点安装</h3><p>集群中其他节点安装，参考以上的安装步骤，修改对应配置文件路径和端口即可</p>
+<h3 id="集群启动脚本"><a href="#集群启动脚本" class="headerlink" title="集群启动脚本"></a>集群启动脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> [`date`]开始启动redis集群...</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">startRedis</span></span>()&#123;</span><br><span class="line">port=<span class="variable">$1</span></span><br><span class="line">cmd=<span class="string">"redis-server /home/redis/cluster/<span class="variable">$&#123;port&#125;</span>/redis.conf"</span></span><br><span class="line"><span class="built_in">echo</span> [`date`]<span class="variable">$&#123;cmd&#125;</span></span><br><span class="line">`<span class="variable">$&#123;cmd&#125;</span>`</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startRedis 6379</span><br><span class="line">startRedis 6479</span><br><span class="line">startRedis 6579</span><br><span class="line">startRedis 6380</span><br><span class="line">startRedis 6480</span><br><span class="line">startRedis 6580</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> [`date`]redis集群启动完成!</span><br></pre></td></tr></table></figure>
+
+<h3 id="创建集群"><a href="#创建集群" class="headerlink" title="创建集群"></a>创建集群</h3><p>使用启动脚本，启动本机上的所以redis节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">redis-trib.rb create --replicas 1 192.168.88.135:6379 192.168.88.135:6479 192.168.88.135:6579 192.168.88.135:6380 192.168.88.135:6480 192.168.88.135:6580</span><br><span class="line"></span><br><span class="line"><span class="comment">#--replicas 1：指定了master从库的数量为1，前面3个ip和端口表示是主服务，后面3个表示是从服务</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装问题汇总"><a href="#安装问题汇总" class="headerlink" title="安装问题汇总"></a>安装问题汇总</h2><h3 id="make编译时出现错误"><a href="#make编译时出现错误" class="headerlink" title="make编译时出现错误"></a>make编译时出现错误</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">zmalloc.h:50:31: 错误：jemalloc/jemalloc.h：没有那个文件或目录</span><br><span class="line">在部署redis出现如题所述问题</span><br></pre></td></tr></table></figure>
+
+<p>解决方法:编译时使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make MALLOC=libc</span><br></pre></td></tr></table></figure>
+
+<h3 id="cannot-load-such-file-–-zlib"><a href="#cannot-load-such-file-–-zlib" class="headerlink" title="cannot load such file – zlib"></a>cannot load such file – zlib</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@zwb-redhat-6 opt]# gem install redis-3.2.gem</span><br><span class="line">ERROR:  Loading command: install (LoadError)</span><br><span class="line">	cannot load such file -- zlib</span><br><span class="line">ERROR:  While executing gem ... (NoMethodError)</span><br><span class="line">    undefined method `invoke_with_build_args&apos; for nil:NilClass</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib-devel</span><br><span class="line"><span class="built_in">cd</span>   ruby安装目录/ext/zlib</span><br><span class="line">ruby extconf.rb</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/09/10/2.redis安装篇/" data-id="ck0dfodpt00005k7khlpdkyp8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/09/10/1.redis快速入门/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/10/3.redis调优篇/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/09/">September 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2019/09/10/4.redis维护篇 /">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/5.redis项目集成/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/1.redis快速入门/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/2.redis安装篇/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/09/10/3.redis调优篇/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2019 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
