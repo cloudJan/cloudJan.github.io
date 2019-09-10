@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>cloudJane&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="title: redis调优篇date: 2015-10-21 10:34:12tags:  redis  redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -">
+  <meta name="description" content="redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -p使配置生效，重启后配置依然有效。 修改open files参数修改open files，默认open fi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="cloudJane&#39;s blog">
 <meta property="og:url" content="http://yoursite.com/2019/09/10/redis调优篇/index.html">
 <meta property="og:site_name" content="cloudJane&#39;s blog">
-<meta property="og:description" content="title: redis调优篇date: 2015-10-21 10:34:12tags:  redis  redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -">
+<meta property="og:description" content="redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -p使配置生效，重启后配置依然有效。 修改open files参数修改open files，默认open fi">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2019-09-10T08:11:15.852Z">
+<meta property="og:updated_time" content="2019-09-10T08:35:16.205Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="cloudJane&#39;s blog">
-<meta name="twitter:description" content="title: redis调优篇date: 2015-10-21 10:34:12tags:  redis  redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -">
+<meta name="twitter:description" content="redis调优篇系统环境开启TCP连接快速回收开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接 1234修改/etc/sysctl.conf文件修改下面的参数，如果没有请新增此参数net.ipv4.tcp_tw_recycle=1  使用sysctl -p使配置生效，重启后配置依然有效。 修改open files参数修改open files，默认open fi">
   
     <link rel="alternative" href="/atom.xml" title="cloudJane&#39;s blog" type="application/atom+xml">
   
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="" class="js-avatar">
+			<img src="images/headimg.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">cloudJane</a></h1>
@@ -105,7 +105,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="" class="js-avatar">
+				<img src="images/headimg.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">cloudJane</h1>
@@ -159,11 +159,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>title: redis调优篇<br>date: 2015-10-21 10:34:12<br>tags:</p>
-<ul>
-<li>redis</li>
-</ul>
-<h1 id="redis调优篇"><a href="#redis调优篇" class="headerlink" title="redis调优篇"></a>redis调优篇</h1><h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><h3 id="开启TCP连接快速回收"><a href="#开启TCP连接快速回收" class="headerlink" title="开启TCP连接快速回收"></a>开启TCP连接快速回收</h3><p>开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接</p>
+        <h1 id="redis调优篇"><a href="#redis调优篇" class="headerlink" title="redis调优篇"></a>redis调优篇</h1><h2 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h2><h3 id="开启TCP连接快速回收"><a href="#开启TCP连接快速回收" class="headerlink" title="开启TCP连接快速回收"></a>开启TCP连接快速回收</h3><p>开启TCP连接中TIME-WAIT sockets的快速回收，有助于快速释放TCP连接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">修改/etc/sysctl.conf文件</span><br><span class="line"></span><br><span class="line">修改下面的参数，如果没有请新增此参数</span><br><span class="line">net.ipv4.tcp_tw_recycle=1</span><br></pre></td></tr></table></figure>
 
 <p>使用<code>sysctl -p</code>使配置生效，重启后配置依然有效。</p>
@@ -276,7 +272,7 @@
     </a>
   
   
-    <a href="/2019/09/10/redis维护篇/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2019/09/10/redis项目集成/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
