@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2019 | cloudJane&#39;s blog</title>
+  <title>redis维护篇 | cloudJane&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="cloudJane&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/index.html">
+  <meta name="description" content="启动redis服务以下操作使用redis用户操作 123cd /home/redis/standalone#指定redis配置文件redis-server redis.conf  查看进程： 123[redis@zwb-redhat-6 standalone]$ ps -ef|grep redis-serverredis     2721     1  0 10:18 ?        00:00">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="redis维护篇">
+<meta property="og:url" content="http://yoursite.com/2019/09/16/redis维护篇/index.html">
 <meta property="og:site_name" content="cloudJane&#39;s blog">
+<meta property="og:description" content="启动redis服务以下操作使用redis用户操作 123cd /home/redis/standalone#指定redis配置文件redis-server redis.conf  查看进程： 123[redis@zwb-redhat-6 standalone]$ ps -ef|grep redis-serverredis     2721     1  0 10:18 ?        00:00">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2019-09-16T11:08:36.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="cloudJane&#39;s blog">
+<meta name="twitter:title" content="redis维护篇">
+<meta name="twitter:description" content="启动redis服务以下操作使用redis用户操作 123cd /home/redis/standalone#指定redis配置文件redis-server redis.conf  查看进程： 123[redis@zwb-redhat-6 standalone]$ ps -ef|grep redis-serverredis     2721     1  0 10:18 ?        00:00">
   
     <link rel="alternative" href="/atom.xml" title="cloudJane&#39;s blog" type="application/atom+xml">
   
@@ -162,101 +167,93 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-redis维护篇" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      redis维护篇
+    </h1>
+  
+
+        
+        <a href="/2019/09/16/redis维护篇/" class="archive-article-date">
+  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="启动redis服务"><a href="#启动redis服务" class="headerlink" title="启动redis服务"></a>启动redis服务</h2><p>以下操作使用redis用户操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /home/redis/standalone</span><br><span class="line"><span class="comment">#指定redis配置文件</span></span><br><span class="line">redis-server redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>查看进程：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 standalone]$ ps -ef|grep redis-server</span><br><span class="line">redis     2721     1  0 10:18 ?        00:00:00 redis-server 192.168.88.135:6379</span><br><span class="line">redis     2726  2657  0 10:18 pts/1    00:00:00 grep redis-server</span><br></pre></td></tr></table></figure>
+
+<h2 id="停止redis服务"><a href="#停止redis服务" class="headerlink" title="停止redis服务"></a>停止redis服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -ef|grep redis-server</span><br><span class="line"><span class="built_in">kill</span> -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h2 id="客户端连接"><a href="#客户端连接" class="headerlink" title="客户端连接"></a>客户端连接</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 standalone]$ redis-cli -h 192.168.88.135 -p 6379</span><br><span class="line"><span class="comment">#存值</span></span><br><span class="line">192.168.88.135:6379&gt; <span class="built_in">set</span> cust_no 123</span><br><span class="line">OK</span><br><span class="line"><span class="comment">#获取值</span></span><br><span class="line">192.168.88.135:6379&gt; get cust_no</span><br><span class="line"><span class="string">"123"</span></span><br><span class="line">192.168.88.135:6379&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：集群中客户端在连接时需要添加-c参数，不然会出现如下错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 6680]$ redis-cli -h 192.168.88.135 -p 6379</span><br><span class="line">192.168.88.135:6379&gt; set name a</span><br><span class="line">(error) MOVED 5798 192.168.88.135:6679</span><br></pre></td></tr></table></figure>
+
+<p>添加-c参数解决<code>redis-cli -c -h 192.168.88.135 -p 6379</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 6680]$ redis-cli -c -h 192.168.88.135 -p 6379</span><br><span class="line">192.168.88.135:6379&gt; set name a</span><br><span class="line">-&gt; Redirected to slot [5798] located at 192.168.88.135:6679</span><br><span class="line">OK</span><br><span class="line">192.168.88.135:6679&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看redis服务信息"><a href="#查看redis服务信息" class="headerlink" title="查看redis服务信息"></a>查看redis服务信息</h2><p><strong><code>redis-cli -h 192.168.88.135 -p 6379 info</code></strong><br>-h 指定ip地址，<br>-p 指定端口，<br>info命令显示所有的服务信息，<br>可以在info命令后面添加对应的查看项，查询想要的信息，如redis-cli -h 192.168.88.135 -p 6379 info Stats</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 standalone]$ redis-cli -h 192.168.88.135 -p 6379 info</span><br><span class="line"><span class="comment"># Server</span></span><br><span class="line">redis_version:3.2.0</span><br><span class="line">redis_git_sha1:00000000</span><br><span class="line">redis_git_dirty:0</span><br><span class="line">redis_build_id:d211d7e3ba2a27e0</span><br><span class="line">redis_mode:standalone</span><br><span class="line">os:Linux 2.6.32-358.el6.x86_64 x86_64</span><br><span class="line">arch_bits:64</span><br><span class="line">multiplexing_api:epoll</span><br><span class="line">gcc_version:4.4.7</span><br><span class="line">process_id:2397</span><br><span class="line">run_id:261219f11ebbf44e2b08a3070ce151754bd73fa5</span><br><span class="line">tcp_port:6379</span><br><span class="line">uptime_in_seconds:50</span><br><span class="line">uptime_in_days:0</span><br><span class="line">hz:10</span><br><span class="line">lru_clock:12039197</span><br><span class="line">executable:/home/redis/standalone/redis-server</span><br><span class="line">config_file:/home/redis/standalone/redis.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Clients</span></span><br><span class="line">connected_clients:1</span><br><span class="line">client_longest_output_list:0</span><br><span class="line">client_biggest_input_buf:0</span><br><span class="line">blocked_clients:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Memory</span></span><br><span class="line">used_memory:881376</span><br><span class="line">used_memory_human:860.72K</span><br><span class="line">used_memory_rss:2019328</span><br><span class="line">used_memory_rss_human:1.93M</span><br><span class="line">used_memory_peak:881376</span><br><span class="line">used_memory_peak_human:860.72K</span><br><span class="line">total_system_memory:8248168448</span><br><span class="line">total_system_memory_human:7.68G</span><br><span class="line">used_memory_lua:37888</span><br><span class="line">used_memory_lua_human:37.00K</span><br><span class="line">maxmemory:0</span><br><span class="line">maxmemory_human:0B</span><br><span class="line">maxmemory_policy:noeviction</span><br><span class="line">mem_fragmentation_ratio:2.29</span><br><span class="line">mem_allocator:libc</span><br><span class="line"></span><br><span class="line"><span class="comment"># Persistence</span></span><br><span class="line">loading:0</span><br><span class="line">rdb_changes_since_last_save:0</span><br><span class="line">rdb_bgsave_in_progress:0</span><br><span class="line">rdb_last_save_time:1488434155</span><br><span class="line">rdb_last_bgsave_status:ok</span><br><span class="line">rdb_last_bgsave_time_sec:-1</span><br><span class="line">rdb_current_bgsave_time_sec:-1</span><br><span class="line">aof_enabled:0</span><br><span class="line">aof_rewrite_in_progress:0</span><br><span class="line">aof_rewrite_scheduled:0</span><br><span class="line">aof_last_rewrite_time_sec:-1</span><br><span class="line">aof_current_rewrite_time_sec:-1</span><br><span class="line">aof_last_bgrewrite_status:ok</span><br><span class="line">aof_last_write_status:ok</span><br><span class="line"></span><br><span class="line"><span class="comment"># Stats</span></span><br><span class="line">total_connections_received:1</span><br><span class="line">total_commands_processed:0</span><br><span class="line">instantaneous_ops_per_sec:0</span><br><span class="line">total_net_input_bytes:14</span><br><span class="line">total_net_output_bytes:0</span><br><span class="line">instantaneous_input_kbps:0.00</span><br><span class="line">instantaneous_output_kbps:0.00</span><br><span class="line">rejected_connections:0</span><br><span class="line">sync_full:0</span><br><span class="line">sync_partial_ok:0</span><br><span class="line">sync_partial_err:0</span><br><span class="line">expired_keys:0</span><br><span class="line">evicted_keys:0</span><br><span class="line">keyspace_hits:0</span><br><span class="line">keyspace_misses:0</span><br><span class="line">pubsub_channels:0</span><br><span class="line">pubsub_patterns:0</span><br><span class="line">latest_fork_usec:0</span><br><span class="line">migrate_cached_sockets:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Replication</span></span><br><span class="line">role:master</span><br><span class="line">connected_slaves:0</span><br><span class="line">master_repl_offset:0</span><br><span class="line">repl_backlog_active:0</span><br><span class="line">repl_backlog_size:1048576</span><br><span class="line">repl_backlog_first_byte_offset:0</span><br><span class="line">repl_backlog_histlen:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># CPU</span></span><br><span class="line">used_cpu_sys:0.07</span><br><span class="line">used_cpu_user:0.01</span><br><span class="line">used_cpu_sys_children:0.00</span><br><span class="line">used_cpu_user_children:0.00</span><br><span class="line"></span><br><span class="line"><span class="comment"># Cluster</span></span><br><span class="line">cluster_enabled:0</span><br><span class="line"></span><br><span class="line"><span class="comment"># Keyspace</span></span><br><span class="line">db0:keys=1,expires=0,avg_ttl=0</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看集群信息"><a href="#查看集群信息" class="headerlink" title="查看集群信息"></a>查看集群信息</h2><p><strong><code>redis-cli -h 192.168.88.135 -p 6379 cluster info</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 cluster]$ redis-cli -h 192.168.88.135 -p 6379 cluster info</span><br><span class="line">cluster_state:ok</span><br><span class="line">cluster_slots_assigned:16384</span><br><span class="line">cluster_slots_ok:16384</span><br><span class="line">cluster_slots_pfail:0</span><br><span class="line">cluster_slots_fail:0</span><br><span class="line">cluster_known_nodes:6</span><br><span class="line">cluster_size:3</span><br><span class="line">cluster_current_epoch:6</span><br><span class="line">cluster_my_epoch:1</span><br><span class="line">cluster_stats_messages_sent:67</span><br><span class="line">cluster_stats_messages_received:62</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看集群中所有节点信息"><a href="#查看集群中所有节点信息" class="headerlink" title="查看集群中所有节点信息"></a>查看集群中所有节点信息</h2><p><strong><code>redis-cli -h 192.168.88.135 -p 6379 cluster nodes</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 cluster]$ redis-cli -h 192.168.88.135 -p 6379 cluster nodes</span><br><span class="line">73270a1fca101f71d8a7640bf5fd49984c0d2b0c 192.168.88.135:6579 master - 0 1488434856148 3 connected 10923-16383</span><br><span class="line">5a9e0e234db551efc16a8a9df32802592b8ee828 192.168.88.135:6479 master - 0 1488434857155 2 connected 5461-10922</span><br><span class="line">567e3ad44d9740b453ea93f6d4fd25b2d9fd4cfc 192.168.88.135:6380 slave 0a8d5cf22565323e42419663b789ce523a28ce18 0 1488434854137 4 connected</span><br><span class="line">0a8d5cf22565323e42419663b789ce523a28ce18 192.168.88.135:6379 myself,master - 0 0 1 connected 0-5460</span><br><span class="line">c29b43d9b7881bbd7601e3139da525d4ae76e009 192.168.88.135:6580 slave 73270a1fca101f71d8a7640bf5fd49984c0d2b0c 0 1488434855142 6 connected</span><br><span class="line">9d793bf45522e8b14bef5e820cbe4dd9249cc0a2 192.168.88.135:6480 slave 5a9e0e234db551efc16a8a9df32802592b8ee828 0 1488434858163 5 connected</span><br></pre></td></tr></table></figure>
+
+<p>查询的信息中<code>第一列</code>为节点的id，包含master的为主节点，包含slave的从节点，slave节点<code>后面</code>的id为<code>主节点的id</code>。</p>
+<h2 id="检查集群节点状态"><a href="#检查集群节点状态" class="headerlink" title="检查集群节点状态"></a>检查集群节点状态</h2><p><strong><code>redis-trib.rb check 192.168.88.135:6379</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 cluster]$ redis-trib.rb check 192.168.88.135:6379</span><br><span class="line">/usr/<span class="built_in">local</span>/lib/ruby/gems/2.4.0/gems/redis-3.2.1/lib/redis/client.rb:443: warning: constant ::Fixnum is deprecated</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node 192.168.88.135:6379)</span><br><span class="line">M: 0a8d5cf22565323e42419663b789ce523a28ce18 192.168.88.135:6379</span><br><span class="line">   slots:0-5460 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 73270a1fca101f71d8a7640bf5fd49984c0d2b0c 192.168.88.135:6579</span><br><span class="line">   slots:10923-16383 (5461 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 5a9e0e234db551efc16a8a9df32802592b8ee828 192.168.88.135:6479</span><br><span class="line">   slots:5461-10922 (5462 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: 567e3ad44d9740b453ea93f6d4fd25b2d9fd4cfc 192.168.88.135:6380</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 0a8d5cf22565323e42419663b789ce523a28ce18</span><br><span class="line">S: c29b43d9b7881bbd7601e3139da525d4ae76e009 192.168.88.135:6580</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 73270a1fca101f71d8a7640bf5fd49984c0d2b0c</span><br><span class="line">S: 9d793bf45522e8b14bef5e820cbe4dd9249cc0a2 192.168.88.135:6480</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 5a9e0e234db551efc16a8a9df32802592b8ee828</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check <span class="keyword">for</span> open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br></pre></td></tr></table></figure>
+
+<h2 id="集群中添加节点"><a href="#集群中添加节点" class="headerlink" title="集群中添加节点"></a>集群中添加节点</h2><p>新增两个redis节点，节点的端口分别是6679和6680，6679作为主节点，6680作为的6679从节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#此命令中包含两个ip和端口，第一个ip和端口表示是需要新增节点，后面一个表示是集群中任意一个存在的节点</span></span><br><span class="line">redis-trib.rb add-node 192.168.88.135:6679 192.168.88.135:6379</span><br><span class="line">redis-trib.rb add-node --slave --master-id 61f365bff9982ac6f4807c18cdd2bd55917e20c3  192.168.88.135:6680 192.168.88.135:6379</span><br></pre></td></tr></table></figure>
+
+<h2 id="新节点分配槽（sloat）"><a href="#新节点分配槽（sloat）" class="headerlink" title="新节点分配槽（sloat）"></a>新节点分配槽（sloat）</h2><p>给新增的6679的主节点分片槽（sloat），不分片sloat的节点是无法存储数据的。<br>命令<code>redis-trib.rb reshard host:port</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">[redis@zwb-redhat-6 6680]$ redis-trib.rb reshard 192.168.88.135:6379</span><br><span class="line">/usr/<span class="built_in">local</span>/lib/ruby/gems/2.4.0/gems/redis-3.2.1/lib/redis/client.rb:443: warning: constant ::Fixnum is deprecated</span><br><span class="line">&gt;&gt;&gt; Performing Cluster Check (using node 192.168.88.135:6379)</span><br><span class="line">M: 0a8d5cf22565323e42419663b789ce523a28ce18 192.168.88.135:6379</span><br><span class="line">   slots:1365-5460 (4096 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 73270a1fca101f71d8a7640bf5fd49984c0d2b0c 192.168.88.135:6579</span><br><span class="line">   slots:12288-16383 (4096 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">M: 5a9e0e234db551efc16a8a9df32802592b8ee828 192.168.88.135:6479</span><br><span class="line">   slots:6827-10922 (4096 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: 85b09b7b184dde7fc3e95069495811bba86ff7a2 192.168.88.135:6680</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 61f365bff9982ac6f4807c18cdd2bd55917e20c3</span><br><span class="line">S: 567e3ad44d9740b453ea93f6d4fd25b2d9fd4cfc 192.168.88.135:6380</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 0a8d5cf22565323e42419663b789ce523a28ce18</span><br><span class="line">M: 61f365bff9982ac6f4807c18cdd2bd55917e20c3 192.168.88.135:6679</span><br><span class="line">   slots:0-1364,5461-6826,10923-12287 (4096 slots) master</span><br><span class="line">   1 additional replica(s)</span><br><span class="line">S: c29b43d9b7881bbd7601e3139da525d4ae76e009 192.168.88.135:6580</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 73270a1fca101f71d8a7640bf5fd49984c0d2b0c</span><br><span class="line">S: 9d793bf45522e8b14bef5e820cbe4dd9249cc0a2 192.168.88.135:6480</span><br><span class="line">   slots: (0 slots) slave</span><br><span class="line">   replicates 5a9e0e234db551efc16a8a9df32802592b8ee828</span><br><span class="line">[OK] All nodes agree about slots configuration.</span><br><span class="line">&gt;&gt;&gt; Check <span class="keyword">for</span> open slots...</span><br><span class="line">&gt;&gt;&gt; Check slots coverage...</span><br><span class="line">[OK] All 16384 slots covered.</span><br><span class="line">How many slots <span class="keyword">do</span> you want to move (from 1 to 16384)? 4096		<span class="comment">#输入一个数,这个4096表示迁移多少个slots数</span></span><br><span class="line">What is the receiving node ID? 61f365bff9982ac6f4807c18cdd2bd55917e20c3		<span class="comment">#输入目标节点ID,表示迁移到哪个目标节点</span></span><br><span class="line">Please enter all the <span class="built_in">source</span> node IDs.</span><br><span class="line">  Type <span class="string">'all'</span> to use all the nodes as <span class="built_in">source</span> nodes <span class="keyword">for</span> the <span class="built_in">hash</span> slots.</span><br><span class="line">  Type <span class="string">'done'</span> once you entered all the <span class="built_in">source</span> nodes IDs.</span><br><span class="line">Source node <span class="comment">#1:all			#输入all表示从老的所有节点进行重分配,凑够4096个slots给到新节点，也可以输入主节点的id表示从具体的某个主节点中迁移。</span></span><br><span class="line">Source node <span class="comment">#2:done			#输入done表示开始迁移</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="删除中的节点"><a href="#删除中的节点" class="headerlink" title="删除中的节点"></a>删除中的节点</h2><p>删除6680端口的节点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#del-node        host:port node_id</span></span><br><span class="line"><span class="comment">#第一个参数现有节点的ip和端口，第二个参数要删除的节点id</span></span><br><span class="line">redis-trib.rb del-node 192.168.88.135:6379 3168b29f6b5454b0a70338e00e2f52178552a78e</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>请我吃鸡腿<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/hello-word/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/hello-word/">hello word</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/redis安装篇/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/redis安装篇/">redis安装篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/redis调优篇/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/redis调优篇/">redis调优篇</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -268,133 +265,115 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/16/redis维护篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/redis维护篇/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/09/16/redis调优篇/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          redis调优篇
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/09/16/redis项目集成/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">redis项目集成</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/redis维护篇/">redis维护篇</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/redis项目集成/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/redis项目集成/">redis项目集成</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/16/redis快速入门/" class="archive-article-date">
-  	<time datetime="2019-09-16T11:04:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/16/redis快速入门/">redis入门</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -417,8 +396,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
